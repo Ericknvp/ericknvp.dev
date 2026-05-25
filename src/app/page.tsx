@@ -1,7 +1,5 @@
-import dynamic from 'next/dynamic'
+import SceneLoader from '@/components/three/SceneLoader'
 import Navbar from '@/components/ui/Navbar'
-
-const Scene = dynamic(() => import('@/components/three/Scene'), { ssr: false })
 import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
 import Skills from '@/components/sections/Skills'
@@ -12,7 +10,7 @@ export default function Home() {
   return (
     <>
       {/* 3D background — fixed, z-index 0 */}
-      <Scene />
+      <SceneLoader />
 
       {/* All page content — sits above canvas via z-index 1, clips horizontal overflow */}
       <div className="relative overflow-x-hidden" style={{ zIndex: 1 }}>
