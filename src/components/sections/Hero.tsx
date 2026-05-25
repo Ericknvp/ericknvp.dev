@@ -75,7 +75,7 @@ export default function Hero() {
 
             <a
               href="#contact"
-              className="px-7 py-3 rounded-full text-white text-sm font-medium bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all duration-300 shadow-lg shadow-blue-900/30"
+              className="px-7 py-3 rounded-full text-white text-sm font-medium bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 transition-all duration-300 shadow-lg shadow-orange-900/30"
             >
               {t.hero.cta_contact}
             </a>
@@ -105,7 +105,7 @@ export default function Hero() {
             <div
               className="absolute -inset-8 rounded-full blur-3xl pointer-events-none"
               style={{
-                background: 'radial-gradient(circle, rgba(59,130,246,0.35) 0%, rgba(6,182,212,0.15) 50%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(249,115,22,0.35) 0%, rgba(245,158,11,0.15) 50%, transparent 70%)',
               }}
             />
 
@@ -115,7 +115,7 @@ export default function Hero() {
               transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
               className="absolute -inset-3 rounded-full pointer-events-none"
               style={{
-                background: 'conic-gradient(from 0deg, transparent 60%, rgba(59,130,246,0.5) 80%, rgba(6,182,212,0.6) 90%, transparent 100%)',
+                background: 'conic-gradient(from 0deg, transparent 60%, rgba(249,115,22,0.5) 80%, rgba(245,158,11,0.6) 90%, transparent 100%)',
                 borderRadius: '50%',
               }}
             />
@@ -129,7 +129,7 @@ export default function Hero() {
                 background: 'rgba(5, 8, 25, 0.75)',
                 backdropFilter: 'blur(12px)',
                 boxShadow:
-                  '0 0 0 1px rgba(59,130,246,0.2), 0 0 40px rgba(59,130,246,0.12), 0 24px 60px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.06) inset',
+                  '0 0 0 1px rgba(249,115,22,0.2), 0 0 40px rgba(249,115,22,0.12), 0 24px 60px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.06) inset',
               }}
             >
               <motion.div

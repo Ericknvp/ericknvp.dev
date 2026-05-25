@@ -2,27 +2,27 @@
 
 /* ─── Light mode (default) ─────────────────────────────── */
 :root {
-  --bg:           #f0f9ff;
-  --fg:           #0c1a3a;
-  --fg-muted:     #4a6080;
-  --accent:       #2563eb;
-  --accent2:      #0891b2;
-  --glass-bg:     rgba(37, 99, 235, 0.05);
-  --glass-border: rgba(37, 99, 235, 0.12);
-  --glow:         rgba(37, 99, 235, 0.18);
-  --card-hover:   rgba(37, 99, 235, 0.08);
+  --bg:           #fafaf8;
+  --fg:           #18120a;
+  --fg-muted:     #6b4c30;
+  --accent:       #ea580c;
+  --accent2:      #d97706;
+  --glass-bg:     rgba(234, 88, 12, 0.05);
+  --glass-border: rgba(234, 88, 12, 0.12);
+  --glow:         rgba(234, 88, 12, 0.2);
+  --card-hover:   rgba(234, 88, 12, 0.07);
 }
 
 /* ─── Dark mode ────────────────────────────────────────── */
 .dark {
-  --bg:           #020817;
-  --fg:           #f0f9ff;
-  --fg-muted:     #7ea4c8;
-  --accent:       #3b82f6;
-  --accent2:      #06b6d4;
+  --bg:           #0d0a07;
+  --fg:           #faf5f0;
+  --fg-muted:     #b07a50;
+  --accent:       #f97316;
+  --accent2:      #f59e0b;
   --glass-bg:     rgba(255, 255, 255, 0.04);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glow:         rgba(59, 130, 246, 0.2);
+  --glow:         rgba(249, 115, 22, 0.22);
   --card-hover:   rgba(255, 255, 255, 0.06);
 }
 
@@ -40,7 +40,7 @@ body {
   background-color: var(--bg);
   background-image:
     radial-gradient(ellipse 110% 50% at 50% -5%, var(--glow), transparent),
-    radial-gradient(ellipse 50% 35% at 85% 90%, rgba(8, 145, 178, 0.08), transparent);
+    radial-gradient(ellipse 50% 35% at 85% 90%, rgba(245, 158, 11, 0.08), transparent);
   color: var(--fg);
   /* overflow-x NOT set on body — breaks position:fixed on iOS Safari */
 }
@@ -62,12 +62,12 @@ body {
 
 .text-muted { color: var(--fg-muted); }
 
-::selection { background: rgba(59, 130, 246, 0.25); }
+::selection { background: rgba(249, 115, 22, 0.25); }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.35);
+  background: rgba(249, 115, 22, 0.35);
   border-radius: 2px;
 }
 
@@ -83,7 +83,7 @@ body {
     mix-blend-mode: normal;
   }
   ::view-transition-new(root) {
-    animation: theme-circle-reveal 4s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: theme-circle-reveal 1s cubic-bezier(0.22, 1, 0.36, 1);
     mix-blend-mode: normal;
   }
 }

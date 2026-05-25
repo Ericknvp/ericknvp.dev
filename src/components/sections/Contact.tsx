@@ -38,7 +38,7 @@ export default function Contact() {
             />
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all duration-300 shadow-lg shadow-blue-900/25 hover:-translate-y-0.5 active:translate-y-0"
+              className="w-full py-3.5 rounded-xl text-sm font-medium text-white bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 transition-all duration-300 shadow-lg shadow-orange-900/25 hover:-translate-y-0.5 active:translate-y-0"
             >
               {t.contact.send}
             </button>

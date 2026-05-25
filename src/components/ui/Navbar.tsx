@@ -121,8 +121,8 @@ export default function Navbar() {
                     layoutId="nav-active-pill"
                     className="absolute inset-0 rounded-lg"
                     style={{
-                      background: 'rgba(59,130,246,0.13)',
-                      boxShadow: '0 0 10px rgba(59,130,246,0.12)',
+                      background: 'rgba(249,115,22,0.13)',
+                      boxShadow: '0 0 10px rgba(249,115,22,0.12)',
                     }}
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
@@ -140,7 +140,7 @@ export default function Navbar() {
                   style={
                     activeSection !== link.href
                       ? undefined
-                      : { textShadow: '0 0 12px rgba(59,130,246,0.6)' }
+                      : { textShadow: '0 0 12px rgba(249,115,22,0.6)' }
                   }
                 >
                   {link.label}
