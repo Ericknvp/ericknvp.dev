@@ -1,5 +1,7 @@
-import Scene from '@/components/three/Scene'
+import dynamic from 'next/dynamic'
 import Navbar from '@/components/ui/Navbar'
+
+const Scene = dynamic(() => import('@/components/three/Scene'), { ssr: false })
 import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
 import Skills from '@/components/sections/Skills'
