@@ -5,6 +5,7 @@ import { Environment, Sparkles, Stars, MeshDistortMaterial } from '@react-three/
 import { useTheme } from 'next-themes'
 import * as THREE from 'three'
 import { scrollStore } from '@/lib/scrollStore'
+import { useColorPalette } from '@/providers/ColorProvider'
 
 // ─── Metallic irregular orb ───────────────────────────────────────────────────
 
@@ -50,9 +51,14 @@ function MetallicOrb() {
           envMapIntensity={4.5}
         />
       </mesh>
-      <Sparkles count={45} scale={6} size={1.2} speed={0.25} color="#f97316" opacity={0.3} />
+      <SparklesAccent />
     </group>
   )
+}
+
+function SparklesAccent() {
+  const { palette } = useColorPalette()
+  return <Sparkles count={45} scale={6} size={1.2} speed={0.25} color={palette.scene.sparkle} opacity={0.3} />
 }
 
 // ─── Ambient metallic shards ──────────────────────────────────────────────────
@@ -78,6 +84,7 @@ function AmbientFragment({ position, scale = 1, speed = 1 }: { position: [number
 // ─── Dynamic lights ───────────────────────────────────────────────────────────
 
 function DynamicLights({ isDark }: { isDark: boolean }) {
+  const { palette } = useColorPalette()
   const l1 = useRef<THREE.PointLight>(null)
   const l2 = useRef<THREE.PointLight>(null)
   useFrame((state) => {
@@ -91,11 +98,11 @@ function DynamicLights({ isDark }: { isDark: boolean }) {
   })
   return (
     <>
-      <pointLight ref={l1} position={[5, 4, 3]}    color="#f97316" intensity={5}   />
-      <pointLight ref={l2} position={[-6, -3, -3]} color="#93c5fd" intensity={3.5} />
-      <pointLight           position={[0, 6, -4]}  color="#ffffff"  intensity={isDark ? 1.5 : 4} />
-      <pointLight           position={[0, -4, 2]}  color="#fb923c" intensity={2.0} />
-      <pointLight           position={[2, 2, 5]}   color="#ffffff"  intensity={isDark ? 0 : 5} />
+      <pointLight ref={l1} position={[5, 4, 3]}    color={palette.scene.light1} intensity={5}   />
+      <pointLight ref={l2} position={[-6, -3, -3]} color={palette.scene.light2} intensity={3.5} />
+      <pointLight           position={[0, 6, -4]}  color="#ffffff"               intensity={isDark ? 1.5 : 4} />
+      <pointLight           position={[0, -4, 2]}  color={palette.scene.light3}  intensity={2.0} />
+      <pointLight           position={[2, 2, 5]}   color="#ffffff"               intensity={isDark ? 0 : 5} />
       <ambientLight intensity={isDark ? 0.15 : 1.4} />
     </>
   )

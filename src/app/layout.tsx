@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import ThemeProvider from '@/providers/ThemeProvider'
+import ColorProvider from '@/providers/ColorProvider'
 import { LanguageProvider } from '@/providers/LanguageProvider'
 import SmoothScroll from '@/providers/SmoothScroll'
 import ScrollTracker from '@/providers/ScrollTracker'
@@ -23,12 +24,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="min-h-full">
         <ThemeProvider>
+          <ColorProvider>
           <LanguageProvider>
             <SmoothScroll>
               <ScrollTracker />
               {children}
             </SmoothScroll>
           </LanguageProvider>
+          </ColorProvider>
         </ThemeProvider>
       </body>
     </html>

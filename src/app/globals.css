@@ -7,6 +7,7 @@
   --fg-muted:     #6b4c30;
   --accent:       #ea580c;
   --accent2:      #d97706;
+  --accent-rgb:   234,88,12;
   --glass-bg:     rgba(234, 88, 12, 0.05);
   --glass-border: rgba(234, 88, 12, 0.12);
   --glow:         rgba(234, 88, 12, 0.2);
@@ -20,6 +21,7 @@
   --fg-muted:     #b07a50;
   --accent:       #f97316;
   --accent2:      #f59e0b;
+  --accent-rgb:   249,115,22;
   --glass-bg:     rgba(255, 255, 255, 0.04);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glow:         rgba(249, 115, 22, 0.22);
@@ -40,10 +42,21 @@ body {
   background-color: var(--bg);
   background-image:
     radial-gradient(ellipse 110% 50% at 50% -5%, var(--glow), transparent),
-    radial-gradient(ellipse 50% 35% at 85% 90%, rgba(245, 158, 11, 0.08), transparent);
+    radial-gradient(ellipse 50% 35% at 85% 90%, rgba(var(--accent-rgb), 0.07), transparent);
   color: var(--fg);
   /* overflow-x NOT set on body — breaks position:fixed on iOS Safari */
 }
+
+.btn-accent {
+  background: linear-gradient(to right, var(--accent), var(--accent2));
+  box-shadow: 0 10px 25px -5px rgba(var(--accent-rgb), 0.3);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.btn-accent:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+.btn-accent:active { transform: translateY(0); }
 
 .glass {
   background: var(--glass-bg);
@@ -62,12 +75,12 @@ body {
 
 .text-muted { color: var(--fg-muted); }
 
-::selection { background: rgba(249, 115, 22, 0.25); }
+::selection { background: rgba(var(--accent-rgb), 0.25); }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(249, 115, 22, 0.35);
+  background: rgba(var(--accent-rgb), 0.35);
   border-radius: 2px;
 }
 
