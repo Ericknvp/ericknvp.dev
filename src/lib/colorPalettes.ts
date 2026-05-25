@@ -143,6 +143,30 @@ export const palettes: ColorPalette[] = [
     scene: { sparkle: '#a855f7', light1: '#a855f7', light2: '#86efac', light3: '#c084fc' },
   },
   {
+    id: 'green',
+    dark: {
+      accent:      '#22c55e',
+      accent2:     '#16a34a',
+      accentRgb:   '34,197,94',
+      fgMuted:     '#50a070',
+      glassBg:     'rgba(255,255,255,0.04)',
+      glassBorder: 'rgba(255,255,255,0.08)',
+      glow:        'rgba(34,197,94,0.22)',
+      cardHover:   'rgba(255,255,255,0.06)',
+    },
+    light: {
+      accent:      '#16a34a',
+      accent2:     '#15803d',
+      accentRgb:   '22,163,74',
+      fgMuted:     '#2a6a3a',
+      glassBg:     'rgba(22,163,74,0.05)',
+      glassBorder: 'rgba(22,163,74,0.12)',
+      glow:        'rgba(22,163,74,0.2)',
+      cardHover:   'rgba(22,163,74,0.07)',
+    },
+    scene: { sparkle: '#22c55e', light1: '#22c55e', light2: '#f0abfc', light3: '#4ade80' },
+  },
+  {
     id: 'yellow',
     dark: {
       accent:      '#eab308',
