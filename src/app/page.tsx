@@ -5,6 +5,7 @@ import About from '@/components/sections/About'
 import BentoSkills from '@/components/sections/BentoSkills'
 import Projects from '@/components/sections/Projects'
 import Contact from '@/components/sections/Contact'
+import Footer from '@/components/ui/Footer'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
           <About />
           <Contact />
         </main>
+        <Footer />
       </div>
     </>
   )
