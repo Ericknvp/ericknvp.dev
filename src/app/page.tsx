@@ -6,6 +6,7 @@ import BentoSkills from '@/components/sections/BentoSkills'
 import Projects from '@/components/sections/Projects'
 import Contact from '@/components/sections/Contact'
 import Footer from '@/components/ui/Footer'
+import MusicPlayer from '@/components/ui/MusicPlayer'
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         </main>
         <Footer />
       </div>
+      <MusicPlayer />
     </>
   )
 }
