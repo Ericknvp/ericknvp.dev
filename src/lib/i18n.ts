@@ -22,7 +22,7 @@ export const translations = {
       card1_title: 'Background',
       factLabels: { Location: 'Location', Focus: 'Focus', Available: 'Available', Languages: 'Languages' },
       card1_p1: 'Full Stack and Mobile Developer passionate about building high-performance web and mobile applications. Currently in my 6th semester of Software Engineering. Exploring Artificial Intelligence and Data Science.',
-      card1_p2: 'From intuitive Flutter mobile apps to scalable Python backends, I enjoy working across the full stack and delivering products that make a real impact.',
+      card1_p2: 'Currently exploring the potential of Artificial Intelligence and Data Science to power my future projects.',
       card2_title: 'Quick Facts',
       facts: {
         Location: 'Pereira, Colombia 🇨🇴',
@@ -82,7 +82,7 @@ export const translations = {
       title: 'Quién soy',
       card1_title: 'Historia',
       card1_p1: 'Desarrollador Full Stack y Móvil apasionado por construir aplicaciones web y móviles de alto rendimiento. Actualmente en sexto semestre de Ingeniería de Software. Explorando la Inteligencia Artificial y la Ciencia de Datos.',
-      card1_p2: 'Desde apps móviles intuitivas con Flutter hasta backends escalables en Python, disfruto trabajar en todo el stack y entregar productos que generan impacto real.',
+      card1_p2: 'Actualmente explorando el potencial de la Inteligencia Artificial y la Ciencia de Datos para potenciar mis futuros proyectos.',
       card2_title: 'Datos rápidos',
       factLabels: { Location: 'Ubicación', Focus: 'Enfoque', Available: 'Disponible', Languages: 'Idiomas' },
       facts: {
