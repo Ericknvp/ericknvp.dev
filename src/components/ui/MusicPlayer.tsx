@@ -9,7 +9,10 @@ export default function MusicPlayer() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 400)
+    const t = setTimeout(() => {
+      setVisible(true)
+      audioRef.current?.play().then(() => setPlaying(true)).catch(() => {})
+    }, 400)
     return () => clearTimeout(t)
   }, [])
 
