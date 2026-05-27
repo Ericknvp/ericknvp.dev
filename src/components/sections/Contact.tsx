@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react'
 import GlassCard from '../ui/GlassCard'
 import { useLang } from '@/providers/LanguageProvider'
 
@@ -10,8 +11,34 @@ const inputClass = `
   focus:border-[var(--accent)]/50
 `.trim()
 
+type Status = 'idle' | 'loading' | 'success' | 'error'
+
 export default function Contact() {
   const { t } = useLang()
+  const [status, setStatus] = useState<Status>('idle')
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setStatus('loading')
+
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    })
+
+    if (res.ok) {
+      setStatus('success')
+      setForm({ name: '', email: '', subject: '', message: '' })
+    } else {
+      setStatus('error')
+    }
+  }
 
   return (
     <section id="contact" className="py-32 px-6 pb-40">
@@ -25,24 +52,69 @@ export default function Contact() {
         </div>
 
         <GlassCard delay={0.1}>
-          <form className="flex flex-col gap-4">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <input type="text"  placeholder={t.contact.name}    className={inputClass} />
-              <input type="email" placeholder={t.contact.email}   className={inputClass} />
+          {status === 'success' ? (
+            <div className="py-10 flex flex-col items-center gap-3">
+              <div
+                className="w-10 h-px"
+                style={{ backgroundColor: 'var(--accent)' }}
+              />
+              <p className="text-base font-semibold tracking-wide">Mensaje enviado</p>
+<button
+                onClick={() => setStatus('idle')}
+                className="mt-4 text-xs font-mono tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity"
+              >
+                Enviar otro
+              </button>
             </div>
-            <input type="text" placeholder={t.contact.subject} className={inputClass} />
-            <textarea
-              placeholder={t.contact.message}
-              rows={5}
-              className={`${inputClass} resize-none`}
-            />
-            <button
-              type="submit"
-              className="btn-accent w-full py-3.5 rounded-xl text-sm font-medium text-white"
-            >
-              {t.contact.send}
-            </button>
-          </form>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <input
+                  type="text" name="name" value={form.name}
+                  onChange={handleChange}
+                  placeholder={t.contact.name}
+                  required
+                  className={inputClass}
+                />
+                <input
+                  type="email" name="email" value={form.email}
+                  onChange={handleChange}
+                  placeholder={t.contact.email}
+                  required
+                  className={inputClass}
+                />
+              </div>
+              <input
+                type="text" name="subject" value={form.subject}
+                onChange={handleChange}
+                placeholder={t.contact.subject}
+                required
+                className={inputClass}
+              />
+              <textarea
+                name="message" value={form.message}
+                onChange={handleChange}
+                placeholder={t.contact.message}
+                rows={5}
+                required
+                className={`${inputClass} resize-none`}
+              />
+
+              {status === 'error' && (
+                <p className="text-xs text-red-400 text-center">
+                  Hubo un error al enviar. Intenta de nuevo.
+                </p>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="btn-accent w-full py-3.5 rounded-xl text-sm font-medium text-white disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {status === 'loading' ? 'Enviando...' : t.contact.send}
+              </button>
+            </form>
+          )}
         </GlassCard>
 
         <p className="text-center text-xs font-mono mt-10 text-muted opacity-60">
