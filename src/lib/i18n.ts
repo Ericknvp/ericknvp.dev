@@ -60,6 +60,9 @@ export const translations = {
       send: 'Send Message',
       or: 'Contact:',
     },
+    footer: {
+      repo: 'View this project',
+    },
   },
 
   es: {
@@ -120,6 +123,9 @@ export const translations = {
       message: 'Cuéntame sobre tu proyecto...',
       send: 'Enviar mensaje',
       or: 'Contacto:',
+    },
+    footer: {
+      repo: 'Ver este proyecto',
     },
   },
 } satisfies Record<Locale, unknown>
