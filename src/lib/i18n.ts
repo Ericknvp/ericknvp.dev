@@ -88,7 +88,7 @@ export const translations = {
       facts: {
         Location: 'Pereira, Colombia 🇨🇴',
         Focus: 'Desarrollo Web y Móvil',
-        Available: 'En búsqueda de empleo',
+        Available: 'Open to Work',
         Languages: 'ES / EN',
       },
     },
