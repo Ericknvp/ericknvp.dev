@@ -86,16 +86,26 @@ export default function Hero() {
             <a
               href="#contact"
               onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
-              className="btn-accent px-7 py-3 rounded-full text-white text-sm font-medium cursor-pointer"
+              className="hidden md:inline-flex btn-accent px-7 py-3 rounded-full text-white text-sm font-medium cursor-pointer"
             >
               {t.hero.cta_contact}
             </a>
 
+            {/* GitHub — mobile: accent style, desktop: glass style */}
             <a
               href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 glass px-7 py-3 rounded-full text-sm font-medium border border-[var(--glass-border)] hover:border-[var(--accent)]/40 hover:bg-[var(--card-hover)] transition-all duration-300 text-muted hover:text-[var(--fg)]"
+              className="flex md:hidden items-center gap-2 btn-accent px-7 py-3 rounded-full text-white text-sm font-medium"
+            >
+              <GitHubIcon />
+              <span>GitHub</span>
+            </a>
+            <a
+              href={GITHUB_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group hidden md:flex items-center gap-2 glass px-7 py-3 rounded-full text-sm font-medium border border-[var(--glass-border)] hover:border-[var(--accent)]/40 hover:bg-[var(--card-hover)] transition-all duration-300 text-muted hover:text-[var(--fg)]"
             >
               <GitHubIcon />
               <span>GitHub</span>
