@@ -21,7 +21,7 @@ export default function Contact() {
             {t.contact.label}
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{t.contact.title}</h2>
-          <p className="text-muted text-base leading-relaxed">{t.contact.desc}</p>
+          {t.contact.desc && <p className="text-muted text-base leading-relaxed">{t.contact.desc}</p>}
         </div>
 
         <GlassCard delay={0.1}>
@@ -48,11 +48,11 @@ export default function Contact() {
         <p className="text-center text-xs font-mono mt-10 text-muted opacity-60">
           {t.contact.or}{' '}
           <a
-            href="mailto:narvaezvegaerickdraw@gmail.com"
+            href="mailto:narvaezvegaerick@gmail.com"
             className="hover:text-[var(--accent)] transition-colors"
             style={{ color: 'var(--accent)', opacity: 0.8 }}
           >
-            narvaezvegaerickdraw@gmail.com
+            narvaezvegaerick@gmail.com
           </a>
         </p>
       </div>

@@ -11,8 +11,8 @@ const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Erick NVP — Full Stack Developer',
-  description: 'Portfolio of Erick, Full Stack Developer specializing in React, Next.js, and Node.js.',
+  title: 'Ericknvp - Full Stack Developer',
+  description: 'Portfolio of Erick, Full Stack and Mobile Developer from Pereira, Colombia. Specializing in Flutter, Python, and web development.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

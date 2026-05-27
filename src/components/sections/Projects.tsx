@@ -3,9 +3,8 @@ import GlassCard from '../ui/GlassCard'
 import { useLang } from '@/providers/LanguageProvider'
 
 const projectMeta = [
-  { tech: ['React', 'Node.js', 'PostgreSQL'], gradient: 'from-blue-900/70 to-indigo-900/40', href: '#' },
-  { tech: ['Next.js', 'Stripe', 'MongoDB'],   gradient: 'from-cyan-900/70 to-blue-900/40',   href: '#' },
-  { tech: ['NestJS', 'TypeScript', 'Redis'],  gradient: 'from-indigo-900/70 to-violet-900/40', href: '#' },
+  { tech: ['Flutter', 'Dart', 'Firebase'],         gradient: 'from-cyan-900/70 to-blue-900/40',    href: 'https://github.com/Ericknvp/monedo' },
+  { tech: ['Python', 'Flask', 'MySQL', 'MongoDB'], gradient: 'from-violet-900/70 to-indigo-900/40', href: 'https://github.com/Ericknvp/Travelia' },
 ]
 
 export default function Projects() {
@@ -21,17 +20,22 @@ export default function Projects() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">{t.projects.title}</h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
           {t.projects.items.map((project, i) => (
             <GlassCard
               key={project.title}
               delay={i * 0.12}
               className="group cursor-pointer hover:border-[var(--accent)]/25 transition-all duration-300"
             >
-              <a href={projectMeta[i].href} className="block">
-                <div
-                  className={`h-36 rounded-xl bg-gradient-to-br ${projectMeta[i].gradient} mb-5 transition-all duration-500 group-hover:scale-[1.02]`}
-                />
+              <a href={projectMeta[i].href} target="_blank" rel="noopener noreferrer" className="block">
+                <div className="h-36 rounded-xl overflow-hidden mb-5 transition-all duration-500 group-hover:scale-[1.02]">
+                  <img
+                    src={projectMeta[i].href.replace('https://github.com/', 'https://opengraph.github.com/repo/')}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
                 <h3
                   className="text-base font-semibold mb-2 transition-colors duration-200 group-hover:text-[var(--accent)]"
                   style={{ color: 'var(--fg)' }}
