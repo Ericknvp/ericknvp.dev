@@ -11,7 +11,7 @@ export const translations = {
     hero: {
       role: 'Full Stack Developer',
       greeting: "Hi, I'm",
-      desc: 'I build web and mobile applications with great performance and design. Currently exploring AI and Data Science.',
+      desc: 'Full Stack Software Developer. Focused on high performance, web architecture, and Data Science.',
       cta_projects: 'View Projects',
       cta_contact: 'Get In Touch',
       scroll: 'scroll',
@@ -72,7 +72,7 @@ export const translations = {
     hero: {
       role: 'Desarrollador Full Stack',
       greeting: 'Hola, soy',
-      desc: 'Construyo aplicaciones web y móviles con buen rendimiento y diseño. Explorando IA y Ciencia de Datos.',
+      desc: 'Desarrollador de software Full Stack. Enfocado en alto rendimiento, arquitectura web y Ciencia de Datos.',
       cta_projects: 'Ver Proyectos',
       cta_contact: 'Contáctame',
       scroll: 'scroll',
