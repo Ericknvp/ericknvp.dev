@@ -27,6 +27,7 @@ import {
   SiGit,
 } from 'react-icons/si'
 import { VscVscode } from 'react-icons/vsc'
+import { FaAws } from 'react-icons/fa'
 import { useLang } from '@/providers/LanguageProvider'
 
 type Skill = { name: string; icon: IconType; color: string }
@@ -73,6 +74,7 @@ const initialCategories: Category[] = [
     skills: [
       { name: 'Git',     icon: SiGit,     color: '#F05032' },
       { name: 'VS Code', icon: VscVscode, color: '#007ACC' },
+      { name: 'AWS',     icon: FaAws,     color: '#FF9900' },
     ],
   },
 ]

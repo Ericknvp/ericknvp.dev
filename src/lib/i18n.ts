@@ -17,7 +17,7 @@ export const translations = {
       scroll: 'scroll',
     },
     about: {
-      label: '01 — About',
+      label: '03 — About',
       title: 'Who I am',
       card1_title: 'Background',
       factLabels: { Location: 'Location', Focus: 'Focus', Available: 'Available', Languages: 'Languages' },
@@ -32,11 +32,11 @@ export const translations = {
       },
     },
     skills: {
-      label: '02 — Skills',
+      label: '01 — Skills',
       title: 'Technologies',
     },
     projects: {
-      label: '03 — Projects',
+      label: '02 — Projects',
       title: 'Selected Work',
       items: [
         {
@@ -78,7 +78,7 @@ export const translations = {
       scroll: 'scroll',
     },
     about: {
-      label: '01 — Sobre mí',
+      label: '03 — Sobre mí',
       title: 'Quién soy',
       card1_title: 'Historia',
       card1_p1: 'Desarrollador Full Stack y Móvil apasionado por construir aplicaciones web y móviles de alto rendimiento. Actualmente explorando la Inteligencia Artificial y la Ciencia de Datos.',
@@ -93,11 +93,11 @@ export const translations = {
       },
     },
     skills: {
-      label: '02 — Habilidades',
+      label: '01 — Habilidades',
       title: 'Tecnologías',
     },
     projects: {
-      label: '03 — Proyectos',
+      label: '02 — Proyectos',
       title: 'Mis Proyectos',
       items: [
         {
