@@ -160,7 +160,7 @@ export default function Hero() {
                 className="relative w-full h-full"
               >
                 <Image
-                  src="/erickanimado.png"
+                  src="/avatar-erick.png"
                   alt="Erick"
                   fill
                   className="object-cover"

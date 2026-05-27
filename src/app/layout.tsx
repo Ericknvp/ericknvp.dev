@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: 'Ericknvp',
     images: [
       {
-        url: 'https://ericknvp-dev.vercel.app/erickanimado.png',
+        url: 'https://ericknvp-dev.vercel.app/avatar-erick.png',
         width: 800,
         height: 800,
         alt: 'Erick - Full Stack Developer',
