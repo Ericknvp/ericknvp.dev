@@ -11,7 +11,7 @@ export const translations = {
     hero: {
       role: 'Full Stack Developer',
       greeting: "Hi, I'm",
-      desc: 'I design and develop web and mobile applications that combine performance, scalability, and great design. Passionate about software architecture and currently exploring AI and Data Science.',
+      desc: 'I build web and mobile applications with great performance and design. Currently exploring AI and Data Science.',
       cta_projects: 'View Projects',
       cta_contact: 'Get In Touch',
       scroll: 'scroll',
@@ -21,7 +21,7 @@ export const translations = {
       title: 'Who I am',
       card1_title: 'Background',
       factLabels: { Location: 'Location', Focus: 'Focus', Available: 'Available', Languages: 'Languages' },
-      card1_p1: 'Full Stack and Mobile Developer passionate about building high-performance web and mobile applications. Currently exploring Artificial Intelligence and Data Science.',
+      card1_p1: 'Software Engineering student in my 6th semester, passionate about building high-performance web and mobile applications. Currently exploring Artificial Intelligence and Data Science.',
       card1_p2: 'From intuitive Flutter mobile apps to scalable Python backends, I enjoy working across the full stack and delivering products that make a real impact.',
       card2_title: 'Quick Facts',
       facts: {
@@ -72,7 +72,7 @@ export const translations = {
     hero: {
       role: 'Desarrollador Full Stack',
       greeting: 'Hola, soy',
-      desc: 'Diseño y desarrollo aplicaciones web y móviles que combinan rendimiento, escalabilidad y buen diseño. Apasionado por la arquitectura de software y actualmente explorando la Inteligencia Artificial y la Ciencia de Datos.',
+      desc: 'Construyo aplicaciones web y móviles con buen rendimiento y diseño. Explorando IA y Ciencia de Datos.',
       cta_projects: 'Ver Proyectos',
       cta_contact: 'Contáctame',
       scroll: 'scroll',
@@ -81,7 +81,7 @@ export const translations = {
       label: '03 — Sobre mí',
       title: 'Quién soy',
       card1_title: 'Historia',
-      card1_p1: 'Desarrollador Full Stack y Móvil apasionado por construir aplicaciones web y móviles de alto rendimiento. Actualmente explorando la Inteligencia Artificial y la Ciencia de Datos.',
+      card1_p1: 'Estudiante de Ingeniería de Software en sexto semestre, apasionado por construir aplicaciones web y móviles de alto rendimiento. Actualmente explorando la Inteligencia Artificial y la Ciencia de Datos.',
       card1_p2: 'Desde apps móviles intuitivas con Flutter hasta backends escalables en Python, disfruto trabajar en todo el stack y entregar productos que generan impacto real.',
       card2_title: 'Datos rápidos',
       factLabels: { Location: 'Ubicación', Focus: 'Enfoque', Available: 'Disponible', Languages: 'Idiomas' },
