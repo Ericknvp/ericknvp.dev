@@ -116,7 +116,7 @@ export default function Hero() {
         </div>
 
         {/* ── Right: avatar ── */}
-        <div className="order-1 md:order-2 flex justify-center md:justify-end">
+        <div className="order-1 md:order-2 flex justify-center md:justify-end pt-20 md:pt-0">
           <motion.div
             initial={{ opacity: 0, scale: 0.85, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
