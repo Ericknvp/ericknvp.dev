@@ -21,8 +21,8 @@ export const translations = {
       title: 'Who I am',
       card1_title: 'Background',
       factLabels: { Location: 'Location', Focus: 'Focus', Available: 'Available', Languages: 'Languages' },
-      card1_p1: 'Full Stack and Mobile Developer passionate about building high-performance web and mobile applications. Currently in my 6th semester of Software Engineering. Exploring Artificial Intelligence and Data Science.',
-      card1_p2: 'Currently exploring the potential of Artificial Intelligence and Data Science to power my future projects.',
+      card1_p1: 'Full Stack Software Developer. Currently in my 6th semester of Software Engineering.',
+      card1_p2: 'My work lives at the intersection of high-performance engineering and creative design. I build web and mobile applications where solid architecture meets flawless visual interfaces. I integrate AI and Data Science into my projects, while deepening my expertise in React to take my designs to the next level.',
       card2_title: 'Quick Facts',
       facts: {
         Location: 'Pereira, Colombia 🇨🇴',
@@ -81,8 +81,8 @@ export const translations = {
       label: '03 — Sobre mí',
       title: 'Quién soy',
       card1_title: 'Historia',
-      card1_p1: 'Desarrollador Full Stack y Móvil apasionado por construir aplicaciones web y móviles de alto rendimiento. Actualmente en sexto semestre de Ingeniería de Software. Explorando la Inteligencia Artificial y la Ciencia de Datos.',
-      card1_p2: 'Actualmente explorando el potencial de la Inteligencia Artificial y la Ciencia de Datos para potenciar mis futuros proyectos.',
+      card1_p1: 'Desarrollador de software Full Stack. Actualmente cursando el sexto semestre de Ingeniería de Software.',
+      card1_p2: 'Mi trabajo vive en la intersección entre la ingeniería de alto rendimiento y el diseño creativo. Construyo aplicaciones web y móviles donde la arquitectura sólida se encuentra con interfaces visuales impecables. Integro IA y Ciencia de Datos en mis proyectos, mientras profundizo en React para llevar mis diseños al siguiente nivel.',
       card2_title: 'Datos rápidos',
       factLabels: { Location: 'Ubicación', Focus: 'Enfoque', Available: 'Disponible', Languages: 'Idiomas' },
       facts: {
