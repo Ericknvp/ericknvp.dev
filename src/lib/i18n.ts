@@ -26,7 +26,7 @@ export const translations = {
       card2_title: 'Quick Facts',
       facts: {
         Location: 'Pereira, Colombia',
-        Focus: 'UX/UI Designer · AI/ML Engineer',
+        Focus: 'React · UX/UI Designer · AI/ML Engineer',
         Available: 'Open to Work',
         Languages: 'ES / EN',
       },
@@ -90,7 +90,7 @@ export const translations = {
       factLabels: { Location: 'Ubicación', Focus: 'Enfoque', Available: 'Disponible', Languages: 'Idiomas' },
       facts: {
         Location: 'Pereira, Colombia',
-        Focus: 'UX/UI Designer · AI/ML Engineer',
+        Focus: 'React · UX/UI Designer · AI/ML Engineer',
         Available: 'Open to Work',
         Languages: 'ES / EN',
       },
