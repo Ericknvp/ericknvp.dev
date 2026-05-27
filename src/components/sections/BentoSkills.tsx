@@ -24,7 +24,7 @@ import {
   SiFlutter, SiDart, SiFirebase, SiAndroidstudio,
   SiHtml5, SiCss, SiJavascript, SiBootstrap, SiTailwindcss, SiReact, SiNextdotjs,
   SiPython, SiFlask, SiPhp, SiMysql, SiMongodb,
-  SiGit,
+  SiGit, SiN8N,
 } from 'react-icons/si'
 import { VscVscode } from 'react-icons/vsc'
 import { FaAws } from 'react-icons/fa'
@@ -75,6 +75,7 @@ const initialCategories: Category[] = [
       { name: 'Git',     icon: SiGit,     color: '#F05032' },
       { name: 'VS Code', icon: VscVscode, color: '#007ACC' },
       { name: 'AWS',     icon: FaAws,     color: '#FF9900' },
+      { name: 'n8n',     icon: SiN8N,     color: '#EA4B71' },
     ],
   },
 ]
