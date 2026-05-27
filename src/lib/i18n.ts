@@ -26,7 +26,7 @@ export const translations = {
       card2_title: 'Quick Facts',
       facts: {
         Location: 'Pereira, Colombia 🇨🇴',
-        Focus: 'Web & Mobile Dev',
+        Focus: 'Data Architect & AI/ML Engineer',
         Available: 'Open to Work',
         Languages: 'ES / EN',
       },
@@ -87,7 +87,7 @@ export const translations = {
       factLabels: { Location: 'Ubicación', Focus: 'Enfoque', Available: 'Disponible', Languages: 'Idiomas' },
       facts: {
         Location: 'Pereira, Colombia 🇨🇴',
-        Focus: 'Desarrollo Web y Móvil',
+        Focus: 'Data Architect & AI/ML Engineer',
         Available: 'Open to Work',
         Languages: 'ES / EN',
       },
