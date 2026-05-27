@@ -102,16 +102,6 @@ export default function Hero() {
               <ExternalIcon />
             </a>
 
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 glass px-7 py-3 rounded-full text-sm font-medium border border-[var(--glass-border)] hover:border-[var(--accent)]/40 hover:bg-[var(--card-hover)] transition-all duration-300 text-muted hover:text-[var(--fg)]"
-            >
-              <InstagramIcon />
-              <span>Instagram</span>
-              <ExternalIcon />
-            </a>
           </motion.div>
         </div>
 
