@@ -92,7 +92,7 @@ export default function Projects() {
                         color: 'var(--accent)',
                       }}
                     >
-                      Live App ↗
+                      Live App
                     </a>
                   )}
                 </div>
