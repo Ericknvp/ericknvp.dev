@@ -192,6 +192,7 @@ export default function BentoSkills() {
         </div>
 
         <DndContext
+          id="skills-dnd"
           sensors={sensors}
           collisionDetection={closestCenter}
           onDragStart={handleDragStart}
