@@ -160,7 +160,6 @@ export default function Navbar() {
               style={{ background: 'rgba(255,255,255,0.06)' }}
               title="Toggle language"
             >
-              <span className="text-sm leading-none">{locale === 'en' ? '🇺🇸' : '🇨🇴'}</span>
               <span>{locale === 'en' ? 'EN' : 'ES'}</span>
             </motion.button>
 

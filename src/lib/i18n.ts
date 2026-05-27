@@ -25,7 +25,7 @@ export const translations = {
       card1_p2: 'My work lives at the intersection of high-performance engineering and creative design. I build web and mobile applications where solid architecture meets flawless visual interfaces. I integrate AI and Data Science into my projects, while deepening my expertise in React to take my designs to the next level.',
       card2_title: 'Quick Facts',
       facts: {
-        Location: 'Pereira, Colombia 🇨🇴',
+        Location: 'Pereira, Colombia',
         Focus: 'UX/UI Designer · AI/ML Engineer',
         Available: 'Open to Work',
         Languages: 'ES / EN',
@@ -86,7 +86,7 @@ export const translations = {
       card2_title: 'Datos rápidos',
       factLabels: { Location: 'Ubicación', Focus: 'Enfoque', Available: 'Disponible', Languages: 'Idiomas' },
       facts: {
-        Location: 'Pereira, Colombia 🇨🇴',
+        Location: 'Pereira, Colombia',
         Focus: 'UX/UI Designer · AI/ML Engineer',
         Available: 'Open to Work',
         Languages: 'ES / EN',
