@@ -58,7 +58,7 @@ export const translations = {
       subject: 'Subject',
       message: 'Tell me about your project...',
       send: 'Send Message',
-      or: 'or reach me at',
+      or: 'Contact:',
     },
   },
 
@@ -119,7 +119,7 @@ export const translations = {
       subject: 'Asunto',
       message: 'Cuéntame sobre tu proyecto...',
       send: 'Enviar mensaje',
-      or: 'o escríbeme a',
+      or: 'Contacto:',
     },
   },
 } satisfies Record<Locale, unknown>
