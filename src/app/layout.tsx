@@ -13,6 +13,21 @@ const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin']
 export const metadata: Metadata = {
   title: 'Ericknvp - Full Stack Developer',
   description: 'Portfolio of Erick, Full Stack and Mobile Developer from Pereira, Colombia. Specializing in Flutter, Python, and web development.',
+  openGraph: {
+    title: 'Ericknvp - Full Stack Developer',
+    description: 'Portfolio of Erick, Full Stack and Mobile Developer from Pereira, Colombia.',
+    url: 'https://ericknvp-dev.vercel.app',
+    siteName: 'Ericknvp',
+    images: [
+      {
+        url: 'https://ericknvp-dev.vercel.app/erickanimado.png',
+        width: 800,
+        height: 800,
+        alt: 'Erick - Full Stack Developer',
+      },
+    ],
+    type: 'website',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
