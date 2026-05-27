@@ -27,7 +27,7 @@ import {
   SiGit, SiN8N,
 } from 'react-icons/si'
 import { VscVscode } from 'react-icons/vsc'
-import { FaAws } from 'react-icons/fa'
+import { FaAws, FaJava } from 'react-icons/fa'
 import { useLang } from '@/providers/LanguageProvider'
 
 type Skill = { name: string; icon: IconType; color: string }
@@ -61,6 +61,7 @@ const initialCategories: Category[] = [
     id: 'backend',
     label: 'Backend',
     skills: [
+      { name: 'Java',    icon: FaJava,    color: '#ED8B00' },
       { name: 'Python',  icon: SiPython,  color: '#3776AB' },
       { name: 'Flask',   icon: SiFlask,   color: '#e2e8f0' },
       { name: 'PHP',     icon: SiPhp,     color: '#777BB4' },
