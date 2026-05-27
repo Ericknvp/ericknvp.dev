@@ -3,8 +3,8 @@ import GlassCard from '../ui/GlassCard'
 import { useLang } from '@/providers/LanguageProvider'
 
 const projectMeta = [
-  { tech: ['Flutter', 'Dart', 'Firebase'],         gradient: 'from-cyan-900/70 to-blue-900/40',    href: 'https://github.com/Ericknvp/monedo' },
-  { tech: ['Python', 'Flask', 'MySQL', 'MongoDB'], gradient: 'from-violet-900/70 to-indigo-900/40', href: 'https://github.com/Ericknvp/Travelia' },
+  { tech: ['Flutter', 'Dart', 'Firebase'],         video: '/videos/monedo.mp4',   href: 'https://github.com/Ericknvp/monedo',   blurBg: true  },
+  { tech: ['Python', 'Flask', 'MySQL', 'MongoDB'], video: '/videos/travelia.mp4', href: 'https://github.com/Ericknvp/Travelia', blurBg: false },
 ]
 
 export default function Projects() {
@@ -28,12 +28,24 @@ export default function Projects() {
               className="group cursor-pointer hover:border-[var(--accent)]/25 transition-all duration-300"
             >
               <a href={projectMeta[i].href} target="_blank" rel="noopener noreferrer" className="block">
-                <div className="h-36 rounded-xl overflow-hidden mb-5 transition-all duration-500 group-hover:scale-[1.02]">
-                  <img
-                    src={projectMeta[i].href.replace('https://github.com/', 'https://opengraph.github.com/repo/')}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
+                <div className="h-48 rounded-xl overflow-hidden mb-5 transition-all duration-500 group-hover:scale-[1.02] bg-black/30 relative">
+                  {projectMeta[i].blurBg && (
+                    <video
+                      src={projectMeta[i].video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-60"
+                    />
+                  )}
+                  <video
+                    src={projectMeta[i].video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className={`relative w-full h-full ${projectMeta[i].blurBg ? 'object-contain' : 'object-cover'}`}
                   />
                 </div>
                 <h3
