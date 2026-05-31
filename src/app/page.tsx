@@ -19,8 +19,8 @@ export default function Home() {
         <Navbar />
         <main>
           <Hero />
-          <BentoSkills />
           <Projects />
+          <BentoSkills />
           <About />
           <Contact />
         </main>
