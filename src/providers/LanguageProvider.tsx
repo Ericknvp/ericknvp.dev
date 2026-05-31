@@ -9,13 +9,13 @@ interface LangCtx {
 }
 
 const LanguageContext = createContext<LangCtx>({
-  locale: 'en',
-  t: translations.en,
+  locale: 'es',
+  t: translations.es,
   toggle: () => {},
 })
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>('en')
+  const [locale, setLocale] = useState<Locale>('es')
 
   useEffect(() => {
     const saved = localStorage.getItem('locale') as Locale | null
