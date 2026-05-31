@@ -32,11 +32,11 @@ export const translations = {
       },
     },
     skills: {
-      label: '01 — Skills',
+      label: '02 — Skills',
       title: 'Technologies',
     },
     projects: {
-      label: '02 — Projects',
+      label: '01 — Projects',
       title: 'Selected Work',
       items: [
         {
@@ -96,11 +96,11 @@ export const translations = {
       },
     },
     skills: {
-      label: '01 — Habilidades',
+      label: '02 — Habilidades',
       title: 'Tecnologías',
     },
     projects: {
-      label: '02 — Proyectos',
+      label: '01 — Proyectos',
       title: 'Mis Proyectos',
       items: [
         {
