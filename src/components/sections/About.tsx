@@ -22,13 +22,13 @@ export default function About() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <GlassCard className="md:col-span-2" delay={0}>
+          <GlassCard className="md:col-span-2" delay={0} style={{ backdropFilter: 'blur(52px)', WebkitBackdropFilter: 'blur(52px)' }}>
             <h3 className="text-lg font-semibold mb-4">{t.about.card1_title}</h3>
             <p className="text-muted leading-relaxed mb-4">{t.about.card1_p1}</p>
             <p className="text-muted leading-relaxed">{t.about.card1_p2}</p>
           </GlassCard>
 
-          <GlassCard delay={0.15}>
+          <GlassCard delay={0.15} style={{ backdropFilter: 'blur(52px)', WebkitBackdropFilter: 'blur(52px)' }}>
             <h3 className="text-lg font-semibold mb-4">{t.about.card2_title}</h3>
             <ul className="space-y-3">
               {(Object.keys(t.about.facts) as (keyof typeof t.about.facts)[]).map((key) => (
