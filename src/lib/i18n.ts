@@ -38,7 +38,7 @@ export const translations = {
     projects: {
       label: '01 — Projects',
       title: 'Selected Work',
-      upcoming: 'Coming Soon',
+      upcoming: 'In Development',
       items: [
         {
           title: 'Monedo',
@@ -107,7 +107,7 @@ export const translations = {
     projects: {
       label: '01 — Proyectos',
       title: 'Mis Proyectos',
-      upcoming: 'Próximamente',
+      upcoming: 'En desarrollo',
       items: [
         {
           title: 'Monedo',
