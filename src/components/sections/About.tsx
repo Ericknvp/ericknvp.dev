@@ -6,8 +6,14 @@ export default function About() {
   const { t } = useLang()
 
   return (
-    <section id="about" className="py-32 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-32 px-6 relative">
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 85% 100% at 10% 50%, rgba(var(--bg-rgb), 0.72) 0%, rgba(var(--bg-rgb), 0.30) 50%, transparent 80%)',
+        }}
+      />
+      <div className="max-w-6xl mx-auto relative">
         <div className="mb-16">
           <p className="text-xs font-mono tracking-[0.3em] uppercase mb-3" style={{ color: 'var(--accent)' }}>
             {t.about.label}

@@ -3,6 +3,7 @@
 /* ─── Light mode (default) ─────────────────────────────── */
 :root {
   --bg:           #fafaf8;
+  --bg-rgb:       250, 250, 248;
   --fg:           #18120a;
   --fg-muted:     #6b4c30;
   --accent:       #ea580c;
@@ -17,6 +18,7 @@
 /* ─── Dark mode ────────────────────────────────────────── */
 .dark {
   --bg:           #0d0a07;
+  --bg-rgb:       13, 10, 7;
   --fg:           #faf5f0;
   --fg-muted:     #b07a50;
   --accent:       #f97316;
