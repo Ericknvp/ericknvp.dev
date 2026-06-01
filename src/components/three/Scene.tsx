@@ -9,7 +9,7 @@ import { useColorPalette } from '@/providers/ColorProvider'
 
 // ─── Metallic irregular orb ───────────────────────────────────────────────────
 
-function MetallicOrb() {
+function MetallicOrb({ isDark }: { isDark: boolean }) {
   const group  = useRef<THREE.Group>(null)
   const mat    = useRef<any>(null)
   const smooth = useRef(0)
@@ -43,12 +43,12 @@ function MetallicOrb() {
         <sphereGeometry args={[1.05, 128, 128]} />
         <MeshDistortMaterial
           ref={mat}
-          color="#c2cdd6"
+          color={isDark ? '#b8c4cc' : '#c2cdd6'}
           metalness={1}
-          roughness={0.04}
+          roughness={isDark ? 0.05 : 0.12}
           distort={0.26}
           speed={1.4}
-          envMapIntensity={4.5}
+          envMapIntensity={isDark ? 4.5 : 3.0}
         />
       </mesh>
       <SparklesAccent />
@@ -116,10 +116,10 @@ export default function Scene() {
   return (
     <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
       <Canvas camera={{ position: [0, 0, 7], fov: 65 }} dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }}>
-        <Environment preset={isDark ? 'studio' : 'warehouse'} background={false} blur={0.85} />
+        <Environment preset={isDark ? 'night' : 'dawn'} background={false} blur={isDark ? 0.35 : 0.90} />
         <DynamicLights isDark={isDark} />
         {isDark && <Stars radius={90} depth={60} count={3500} factor={3} saturation={0.1} fade speed={0.4} />}
-        <MetallicOrb />
+        <MetallicOrb isDark={isDark} />
         <AmbientFragment position={[-4.5,  2,   -3]} scale={0.65} speed={1.1} />
         <AmbientFragment position={[ 4.2, -2,   -5]} scale={0.5}  speed={0.9} />
         <AmbientFragment position={[-2,   -3.5, -4]} scale={0.4}  speed={1.3} />
