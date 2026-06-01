@@ -97,7 +97,7 @@ export const translations = {
     },
     skills: {
       label: '02 — Habilidades',
-      title: 'Tecnologías',
+      title: 'Habilidades',
     },
     projects: {
       label: '01 — Proyectos',
