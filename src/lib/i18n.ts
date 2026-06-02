@@ -49,7 +49,7 @@ export const translations = {
           description: 'Tourism web platform with social networking, business profiles, real-time reservations, and audit logging. Stack: Flask, MySQL, MongoDB, HTML/CSS.',
         },
         {
-          title: 'VALU AI',
+          title: 'VALU',
           description: 'AI-powered SaaS platform that automates business workflows through intelligent agents, real-time analytics, and seamless integrations.',
         },
       ],
@@ -118,8 +118,8 @@ export const translations = {
           description: 'Plataforma web de turismo con red social, gestión de negocios, sistema de reservas en tiempo real y auditoría automática. Stack: Flask, MySQL, MongoDB y HTML/CSS.',
         },
         {
-          title: 'VALU AI',
-          description: 'Plataforma SaaS con IA que automatiza flujos de trabajo empresariales mediante agentes inteligentes, analítica en tiempo real e integraciones nativas.',
+          title: 'VALU',
+          description: 'Plataforma SaaS en desarrollo.',
         },
       ],
     },
