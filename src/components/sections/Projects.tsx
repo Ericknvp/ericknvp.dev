@@ -51,7 +51,7 @@ export default function Projects() {
                         >
                           {t.projects.upcoming}
                         </span>
-                        <p className="text-xs font-mono" style={{ color: 'var(--muted)' }}>VALU AI</p>
+                        <p className="text-xs font-mono" style={{ color: 'var(--muted)' }}>VALU</p>
                       </div>
                     </>
                   ) : (
