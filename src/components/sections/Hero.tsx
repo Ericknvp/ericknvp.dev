@@ -1,10 +1,12 @@
 'use client'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { useLang } from '@/providers/LanguageProvider'
+import AsciiReveal from '../ui/AsciiReveal'
+import Magnetic from '../ui/Magnetic'
 
 const GITHUB_URL = 'https://github.com/Ericknvp'
-const INSTAGRAM_URL = 'https://instagram.com/ericknvp'
 
 function GitHubIcon() {
   return (
@@ -14,200 +16,206 @@ function GitHubIcon() {
   )
 }
 
-function InstagramIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 shrink-0">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-    </svg>
-  )
-}
-
-function ExternalIcon() {
-  return (
-    <svg viewBox="0 0 16 16" fill="currentColor" className="w-3 h-3 opacity-40 group-hover:opacity-70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200">
-      <path d="M3.75 2h8.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0112.25 14h-8.5A1.75 1.75 0 012 12.25v-8.5C2 2.784 2.784 2 3.75 2zm0 1.5a.25.25 0 00-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25v-8.5a.25.25 0 00-.25-.25h-8.5zM10.5 5a.5.5 0 010 1H6.707l4.147 4.146a.5.5 0 01-.708.708L6 6.707V10.5a.5.5 0 01-1 0v-5a.5.5 0 01.5-.5h5z" />
-    </svg>
-  )
-}
+const AVATAR_SIZE = 320
 
 export default function Hero() {
   const { t } = useLang()
+  const [avatarActive, setAvatarActive] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
+  const textureY = useTransform(scrollYProgress, [0, 1], [0, 140])
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 60])
+  const windowY = useTransform(scrollYProgress, [0, 1], [0, -100])
+
+  // No mouse on touch devices to trigger the ASCII reveal, so pulse it
+  // on a slow frequency instead — it's a signature interaction, it should be seen.
+  useEffect(() => {
+    const noHover = window.matchMedia('(hover: none)').matches
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!noHover || reduceMotion) return
+
+    let showTimer: ReturnType<typeof setTimeout>
+    let hideTimer: ReturnType<typeof setTimeout>
+    let cancelled = false
+
+    const cycle = () => {
+      showTimer = setTimeout(() => {
+        if (cancelled) return
+        setAvatarActive(true)
+        hideTimer = setTimeout(() => {
+          if (cancelled) return
+          setAvatarActive(false)
+          cycle()
+        }, 2200)
+      }, 4500)
+    }
+    cycle()
+
+    return () => {
+      cancelled = true
+      clearTimeout(showTimer)
+      clearTimeout(hideTimer)
+    }
+  }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center px-6">
-      <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center px-6 pt-28 pb-16 overflow-hidden"
+      style={{ background: 'var(--blue)' }}
+    >
+      {/* Painted wall texture: a couple of quiet whitewash streaks — drifts slower than the content */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
+        style={{
+          y: textureY,
+          background:
+            'repeating-linear-gradient(100deg, var(--cream) 0 2px, transparent 2px 140px)',
+        }}
+      />
 
-        {/* ── Left: text ── */}
+      <motion.div style={{ y: contentY }} className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative">
+
+        {/* ── Left: the sign ── */}
         <div className="order-2 md:order-1">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xs font-mono mb-5 tracking-[0.3em] uppercase"
-            style={{ color: 'var(--accent)' }}
+          <motion.div
+            initial={{ opacity: 0, y: -12, rotate: -6 }}
+            animate={{ opacity: 1, y: 0, rotate: -3 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="tag font-hand font-bold text-sm px-4 py-1.5 mb-6"
           >
             {t.hero.role}
-          </motion.p>
+          </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-none tracking-tight"
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display leading-[0.95] mb-6"
+            style={{ color: 'var(--cream)', fontSize: 'clamp(2.75rem, 8vw, 6rem)' }}
           >
-            {t.hero.greeting}{' '}
-            <span className="gradient-text">Erick</span>
+            {t.hero.greeting}
+            <br />
+            <span style={{ color: 'var(--mustard)' }}>Erick</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.55 }}
-            className="text-lg text-muted max-w-md mb-10 leading-relaxed"
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="text-lg max-w-md mb-10 leading-relaxed text-cream-soft"
           >
             {t.hero.desc}
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-wrap gap-3"
+            transition={{ duration: 0.7, delay: 0.65 }}
+            className="flex flex-wrap gap-4"
           >
-            <a
-              href="#projects"
-              onClick={(e) => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) }}
-              className="glass px-7 py-3 rounded-full text-sm font-medium border border-[var(--glass-border)] hover:border-[var(--accent)]/60 hover:bg-[var(--card-hover)] transition-all duration-300 cursor-pointer"
-              style={{ color: 'var(--fg)' }}
-            >
-              {t.hero.cta_projects}
-            </a>
+            <Magnetic>
+              <a
+                href="#contact"
+                onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
+                className="btn-paint px-7 py-3 text-sm"
+                style={{ background: 'var(--mustard)' }}
+              >
+                {t.hero.cta_contact}
+              </a>
+            </Magnetic>
 
-            <a
-              href="#contact"
-              onClick={(e) => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
-              className="hidden md:inline-flex btn-accent px-7 py-3 rounded-full text-white text-sm font-medium cursor-pointer"
-            >
-              {t.hero.cta_contact}
-            </a>
+            <Magnetic>
+              <a
+                href="#projects"
+                onClick={(e) => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) }}
+                className="btn-paint px-7 py-3 text-sm"
+                style={{ background: 'var(--paper)' }}
+              >
+                {t.hero.cta_projects}
+              </a>
+            </Magnetic>
 
-            {/* GitHub — mobile: accent style, desktop: glass style */}
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex md:hidden items-center gap-2 btn-accent px-7 py-3 rounded-full text-white text-sm font-medium"
-            >
-              <GitHubIcon />
-              <span>GitHub</span>
-            </a>
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group hidden md:flex items-center gap-2 glass px-7 py-3 rounded-full text-sm font-medium border border-[var(--glass-border)] hover:border-[var(--accent)]/40 hover:bg-[var(--card-hover)] transition-all duration-300 text-muted hover:text-[var(--fg)]"
-            >
-              <GitHubIcon />
-              <span>GitHub</span>
-              <ExternalIcon />
-            </a>
-
+            <Magnetic>
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-paint px-6 py-3 text-sm"
+                style={{ background: 'var(--terracotta)', color: 'var(--cream)' }}
+              >
+                <GitHubIcon />
+                <span>GitHub</span>
+              </a>
+            </Magnetic>
           </motion.div>
         </div>
 
-        {/* ── Right: avatar ── */}
-        <div className="order-1 md:order-2 flex justify-center md:justify-end pt-20 md:pt-0">
+        {/* ── Right: the shop window ── */}
+        <div className="order-1 md:order-2 flex justify-center md:justify-end">
           <motion.div
-            initial={{ opacity: 0, scale: 0.85, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 0.88, rotate: 3 }}
+            animate={{ opacity: 1, scale: 1, rotate: 1.5 }}
+            transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            style={{ y: windowY }}
             className="relative"
           >
-            {/* Ambient glow */}
             <div
-              className="absolute -inset-8 rounded-full blur-3xl pointer-events-none"
+              className="relative overflow-hidden group focus-within:outline-4 w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[320px] md:h-[320px]"
               style={{
-                background: 'radial-gradient(circle, rgba(var(--accent-rgb),0.35) 0%, rgba(var(--accent-rgb),0.15) 50%, transparent 70%)',
+                borderRadius: 28,
+                border: '10px solid var(--paper)',
+                boxShadow: '0 0 0 4px var(--ink), 0 24px 50px -10px rgba(var(--shadow-c), 0.55)',
+                background: 'var(--ink)',
               }}
-            />
-
-            {/* Outer decorative ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-              className="absolute -inset-3 rounded-full pointer-events-none"
-              style={{
-                background: 'conic-gradient(from 0deg, transparent 60%, rgba(var(--accent-rgb),0.5) 80%, rgba(var(--accent-rgb),0.6) 90%, transparent 100%)',
-                borderRadius: '50%',
-              }}
-            />
-
-            {/* Glass frame */}
-            <div
-              className="relative rounded-full overflow-hidden border border-white/10"
-              style={{
-                width: 320,
-                height: 320,
-                background: 'rgba(5, 8, 25, 0.75)',
-                backdropFilter: 'blur(12px)',
-                boxShadow:
-                  '0 0 0 1px rgba(var(--accent-rgb),0.2), 0 0 40px rgba(var(--accent-rgb),0.12), 0 24px 60px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.06) inset',
-              }}
+              tabIndex={0}
+              onMouseEnter={() => setAvatarActive(true)}
+              onMouseLeave={() => setAvatarActive(false)}
+              onFocus={() => setAvatarActive(true)}
+              onBlur={() => setAvatarActive(false)}
+              role="button"
+              aria-label="Erick — technical preview"
             >
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-                className="relative w-full h-full"
-              >
-                <Image
-                  src="/avatar-erick.png"
-                  alt="Erick"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </motion.div>
+              <Image
+                src="/avatar-erick.png"
+                alt="Erick"
+                fill
+                sizes="(max-width: 640px) 220px, (max-width: 768px) 280px, 320px"
+                className="object-cover"
+                priority
+              />
+              <AsciiReveal
+                src="/avatar-erick.png"
+                width={AVATAR_SIZE}
+                height={AVATAR_SIZE}
+                active={avatarActive}
+              />
             </div>
 
-            {/* Status badge */}
+            {/* Hanging "open to work" tag — swings from the pin like it just dropped onto it */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 1.1 }}
-              className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 whitespace-nowrap"
-              style={{
-                background: 'rgba(5, 8, 25, 0.85)',
-                backdropFilter: 'blur(16px)',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+              initial={{ opacity: 0, y: -18, rotate: -24 }}
+              animate={{ opacity: 1, y: 0, rotate: 6 }}
+              transition={{
+                opacity: { duration: 0.25, delay: 1 },
+                default: { type: 'spring', stiffness: 140, damping: 7, delay: 1 },
               }}
+              style={{ transformOrigin: 'top center' }}
+              className="tag absolute -bottom-3 -left-3 sm:-bottom-5 sm:-left-6 px-4 py-2 font-hand font-bold text-sm"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: 'var(--terracotta)' }} />
+                <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: 'var(--terracotta)' }} />
               </span>
-              <span className="text-xs font-mono text-emerald-400 font-medium">Open to Work</span>
+              {t.about.facts.Available}
             </motion.div>
           </motion.div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 1.5 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-[10px] font-mono tracking-widest uppercase" style={{ color: 'var(--fg-muted)', opacity: 0.5 }}>
-          {t.hero.scroll}
-        </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-px h-10"
-          style={{ background: 'linear-gradient(to bottom, var(--accent), transparent)', opacity: 0.4 }}
-        />
       </motion.div>
+
+      {/* Awning stripe — the seam into the next signboard */}
+      <div className="awning absolute bottom-0 left-0 right-0 h-3" style={{ ['--stripe-a' as string]: 'var(--cream)', ['--stripe-b' as string]: 'var(--mustard)' }} />
     </section>
   )
 }

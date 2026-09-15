@@ -12,6 +12,13 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Foreign trees living inside this repo that aren't part of the app:
+    ".agents/**",
+    ".claude/**",
+    ".codex/**",
+    ".impeccable/**",
+    "monedo-screenshots/**",
+    "assets/**",
   ]),
 ]);
 

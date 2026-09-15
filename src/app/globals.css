@@ -1,104 +1,188 @@
-@import "tailwindcss";
+@import "tailwindcss" source("..");
 
-/* ─── Light mode (default) ─────────────────────────────── */
+/* ─────────────────────────────────────────────────────────
+   Rotulación — hand-painted shopfront signage system.
+   Sun-lit paint on a market wall.
+   ───────────────────────────────────────────────────────── */
+
 :root {
-  --bg:           #fafaf8;
-  --bg-rgb:       250, 250, 248;
-  --fg:           #18120a;
-  --fg-muted:     #6b4c30;
-  --accent:       #ea580c;
-  --accent2:      #d97706;
-  --accent-rgb:   234,88,12;
-  --glass-bg:     rgba(234, 88, 12, 0.05);
-  --glass-border: rgba(234, 88, 12, 0.12);
-  --glow:         rgba(234, 88, 12, 0.2);
-  --card-hover:   rgba(234, 88, 12, 0.07);
-}
+  --ink:            #1c1309;
+  --ink-soft:       #4a3826;
+  --street:         #e7dcc3;
+  --paper:          #f7efda;
+  --paper-2:        #efe4c8;
 
-/* ─── Dark mode ────────────────────────────────────────── */
-.dark {
-  --bg:           #0d0a07;
-  --bg-rgb:       13, 10, 7;
-  --fg:           #faf5f0;
-  --fg-muted:     #b07a50;
-  --accent:       #f97316;
-  --accent2:      #f59e0b;
-  --accent-rgb:   249,115,22;
-  --glass-bg:     rgba(255, 255, 255, 0.04);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glow:         rgba(249, 115, 22, 0.22);
-  --card-hover:   rgba(255, 255, 255, 0.06);
+  --blue:           #2c5fa8;
+  --blue-deep:      #1d477f;
+  --terracotta:     #c1502b;
+  --terracotta-deep:#97381a;
+  --mustard:        #d99a22;
+  --mustard-deep:   #a9740e;
+
+  --cream:          #fbf3df;
+  --cream-soft:     rgba(251, 243, 223, 0.76);
+
+  --shadow-c:       28, 19, 10;
+  --focus-ring:     #f7c948;
 }
 
 @theme inline {
-  --color-background: var(--bg);
-  --color-foreground: var(--fg);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--street);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-body);
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: auto; }
 
 body {
-  background-color: var(--bg);
-  background-image:
-    radial-gradient(ellipse 110% 50% at 50% -5%, var(--glow), transparent),
-    radial-gradient(ellipse 50% 35% at 85% 90%, rgba(var(--accent-rgb), 0.07), transparent);
-  color: var(--fg);
-  /* overflow-x NOT set on body — breaks position:fixed on iOS Safari */
+  background-color: var(--street);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
 }
 
-.btn-accent {
-  background: linear-gradient(to right, var(--accent), var(--accent2));
-  box-shadow: 0 10px 25px -5px rgba(var(--accent-rgb), 0.3);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-.btn-accent:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
-}
-.btn-accent:active { transform: translateY(0); }
+.font-display { font-family: var(--font-display), sans-serif; }
+.font-hand    { font-family: var(--font-hand), cursive; }
 
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  transition: background 0.4s ease, border-color 0.4s ease;
-}
+/* ─── Painted panel, button, tag, awning — layered as "components"
+   so utility classes (absolute, w-full, etc.) can still override
+   them; an unlayered rule would otherwise always win the cascade. ─── */
 
-.gradient-text {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-muted { color: var(--fg-muted); }
-
-::selection { background: rgba(var(--accent-rgb), 0.25); }
-
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: rgba(var(--accent-rgb), 0.35);
-  border-radius: 2px;
-}
-
-/* ─── Theme toggle circular transition ─────────────────── */
-@keyframes theme-circle-reveal {
-  from { clip-path: circle(0px at var(--theme-x, 50%) var(--theme-y, 50%)); }
-  to   { clip-path: circle(150vmax at var(--theme-x, 50%) var(--theme-y, 50%)); }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  ::view-transition-old(root) {
-    animation: none;
-    mix-blend-mode: normal;
+@layer components {
+  /* Painted panel: the laminated notice / menu board */
+  .panel {
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    box-shadow:
+      0 18px 34px -8px rgba(var(--shadow-c), 0.4),
+      0 4px 10px rgba(var(--shadow-c), 0.22);
   }
-  ::view-transition-new(root) {
-    animation: theme-circle-reveal 1s cubic-bezier(0.22, 1, 0.36, 1);
-    mix-blend-mode: normal;
+
+  .panel::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    right: 18px;
+    width: 26px;
+    height: 16px;
+    background: var(--paper-2);
+    border: 3px solid var(--ink);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    transform: rotate(4deg);
+    pointer-events: none;
+  }
+
+  /* Painted button */
+  .btn-paint {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 3px solid var(--ink);
+    border-radius: 999px;
+    font-weight: 600;
+    color: var(--ink);
+    box-shadow: 0 8px 0 0 rgba(var(--shadow-c), 0.55);
+    transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 160ms cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateY(0) scale(1) rotate(-0.6deg);
+  }
+  .btn-paint:hover  { transform: translateY(-3px) scale(1) rotate(-0.6deg); box-shadow: 0 11px 0 0 rgba(var(--shadow-c), 0.55); }
+  .btn-paint:active { transform: translateY(1px) scale(0.97) rotate(-0.6deg); box-shadow: 0 4px 0 0 rgba(var(--shadow-c), 0.55); transition-duration: 90ms; }
+
+  /* Hanging tag */
+  .tag {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2.5px solid var(--ink);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px -4px rgba(var(--shadow-c), 0.4);
+  }
+  .tag::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--street);
+    border: 2px solid var(--ink);
+  }
+
+  /* Form field: border-color transition on focus, replaces static inline border */
+  .form-field {
+    border: 2px solid var(--ink);
+    transition: border-color 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .form-field:focus {
+    border-color: var(--mustard);
+  }
+
+  /* Awning stripes */
+  .awning {
+    background: repeating-linear-gradient(
+      115deg,
+      var(--stripe-a, var(--cream)) 0 26px,
+      var(--stripe-b, var(--ink)) 26px 52px
+    );
+  }
+}
+
+.text-ink-soft { color: var(--ink-soft); }
+.text-cream-soft { color: var(--cream-soft); }
+
+/* ─── Custom cursor: hide the system pointer while ours is active ─── */
+body.custom-cursor-active,
+body.custom-cursor-active a,
+body.custom-cursor-active button,
+body.custom-cursor-active [role="button"] {
+  cursor: none;
+}
+body.custom-cursor-active input,
+body.custom-cursor-active textarea {
+  cursor: text;
+}
+
+/* ─── Grain overlay: keeps the painted-wall texture consistent site-wide ─── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection { background: rgba(217, 154, 34, 0.45); color: var(--ink); }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--street); }
+::-webkit-scrollbar-thumb {
+  background: var(--mustard);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

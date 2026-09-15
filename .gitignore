@@ -39,3 +39,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude Code / AI-agent tooling — skills, configs, generated docs.
+# Not part of the deployed site.
+.claude/
+.agents/
+.codex/
+.impeccable/
+skills-lock.json
+PRODUCT.md
+
+# Standalone screenshot-generator tool (separate Next.js app, scaffolded
+# locally) and raw source images — not referenced by the site build.
+monedo-screenshots/
+assets/

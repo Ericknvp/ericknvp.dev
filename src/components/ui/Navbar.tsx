@@ -1,37 +1,15 @@
 'use client'
-import { useEffect, useState, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLang } from '@/providers/LanguageProvider'
-
-function SunIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4">
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-    </svg>
-  )
-}
-
-function MoonIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4">
-      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-    </svg>
-  )
-}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState('')
-  const [spotlight, setSpotlight] = useState({ x: 0, y: 0, visible: false })
-  const navRef = useRef<HTMLDivElement>(null)
-  const { theme, setTheme } = useTheme()
+  const [mobileOpen, setMobileOpen] = useState(false)
   const { locale, t, toggle: toggleLang } = useLang()
 
   useEffect(() => {
-    setMounted(true)
     const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -59,6 +37,7 @@ export default function Navbar() {
     const target = document.querySelector(href)
     if (target) target.scrollIntoView({ behavior: 'smooth' })
     setActiveSection(href)
+    setMobileOpen(false)
   }
 
   const navLinks = [
@@ -69,41 +48,27 @@ export default function Navbar() {
   ]
 
   return (
-    <div className="fixed top-5 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 pt-3">
       <motion.nav
-        initial={{ y: -80, opacity: 0 }}
+        initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-auto w-full max-w-2xl"
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="w-full max-w-4xl"
       >
         <div
-          ref={navRef}
-          onMouseMove={(e) => {
-            const rect = navRef.current!.getBoundingClientRect()
-            setSpotlight({ x: e.clientX - rect.left, y: e.clientY - rect.top, visible: true })
-          }}
-          onMouseLeave={() => setSpotlight(s => ({ ...s, visible: false }))}
-          className="relative overflow-hidden flex items-center justify-between px-5 py-3 rounded-2xl border border-[var(--glass-border)] transition-all duration-500"
+          className="relative flex items-center justify-between gap-3 px-4 sm:px-5 py-2.5 rounded-2xl"
           style={{
-            background: scrolled ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.05)',
-            backdropFilter: 'blur(28px)',
-            WebkitBackdropFilter: 'blur(28px)',
+            background: 'var(--ink)',
+            border: '3px solid var(--ink)',
             boxShadow: scrolled
-              ? '0 8px 32px rgba(0,0,0,0.18), 0 1px 0 rgba(255,255,255,0.06) inset, 0 0 0 1px rgba(255,255,255,0.04) inset'
-              : '0 4px 24px rgba(0,0,0,0.10), 0 1px 0 rgba(255,255,255,0.06) inset',
+              ? '0 14px 30px -8px rgba(var(--shadow-c), 0.55)'
+              : '0 8px 20px -8px rgba(var(--shadow-c), 0.4)',
+            transition: 'box-shadow 0.4s ease',
           }}
         >
-          {/* Spotlight cursor glow */}
-          <div
-            className="pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300"
-            style={{
-              opacity: spotlight.visible ? 1 : 0,
-              background: `radial-gradient(180px circle at ${spotlight.x}px ${spotlight.y}px, rgba(255,255,255,0.07), transparent 70%)`,
-            }}
-          />
-          {/* Logo */}
-          <span className="font-mono text-sm font-bold gradient-text tracking-tight">
-            ericknvp.dev
+          {/* Logo — painted board */}
+          <span className="font-display text-lg sm:text-xl tracking-wide shrink-0" style={{ color: 'var(--mustard)' }}>
+            ericknvp<span style={{ color: 'var(--cream)' }}>.dev</span>
           </span>
 
           {/* Links */}
@@ -111,86 +76,100 @@ export default function Navbar() {
             {navLinks.map((link, i) => (
               <motion.li
                 key={link.href}
-                className="relative"
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
+                transition={{ delay: 0.1 + i * 0.06, duration: 0.4 }}
+                className="relative"
               >
                 {activeSection === link.href && (
                   <motion.div
                     layoutId="nav-active-pill"
                     className="absolute inset-0 rounded-lg"
-                    style={{
-                      background: 'rgba(var(--accent-rgb),0.13)',
-                      boxShadow: '0 0 10px rgba(var(--accent-rgb),0.12)',
-                    }}
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    style={{ background: 'rgba(217, 154, 34, 0.16)' }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                   />
                 )}
-                <motion.a
+                <a
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  whileHover={{ y: -2 }}
-                  transition={{ type: 'spring', stiffness: 500, damping: 25 }}
-                  className={`relative z-10 block px-3 py-1.5 text-sm rounded-lg font-medium transition-colors duration-200 ${
-                    activeSection === link.href
-                      ? 'text-[var(--accent)]'
-                      : 'text-muted hover:text-[var(--fg)]'
-                  }`}
-                  style={
-                    activeSection !== link.href
-                      ? undefined
-                      : { textShadow: '0 0 12px rgba(var(--accent-rgb),0.6)' }
-                  }
+                  className="relative block px-3 py-1.5 text-sm font-semibold rounded-lg transition-colors duration-200"
+                  style={{
+                    color: activeSection === link.href ? 'var(--mustard)' : 'var(--cream-soft)',
+                  }}
                 >
                   {link.label}
-                </motion.a>
+                </a>
               </motion.li>
             ))}
           </ul>
 
-          {/* Controls */}
-          <div className="flex items-center gap-2">
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+          {/* Shelf switches: language + theme */}
+          <div className="flex items-center gap-2 shrink-0">
+            <button
               onClick={toggleLang}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-semibold text-muted hover:text-[var(--fg)] border border-[var(--glass-border)] hover:border-[var(--accent)]/40 transition-all duration-200"
-              style={{ background: 'rgba(255,255,255,0.06)' }}
+              className="px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wide"
+              style={{ background: 'var(--mustard)', color: 'var(--ink)', border: '2px solid var(--cream)' }}
               title="Toggle language"
             >
-              <span>{locale === 'en' ? 'EN' : 'ES'}</span>
-            </motion.button>
+              {locale === 'en' ? 'EN' : 'ES'}
+            </button>
 
-            {mounted && (
-              <motion.button
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
-                onClick={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect()
-                  const x = rect.left + rect.width / 2
-                  const y = rect.top + rect.height / 2
-                  document.documentElement.style.setProperty('--theme-x', `${x}px`)
-                  document.documentElement.style.setProperty('--theme-y', `${y}px`)
-                  const next = theme === 'dark' ? 'light' : 'dark'
-                  if (!('startViewTransition' in document)) {
-                    setTheme(next)
-                    return
-                  }
-                  ;(document as Document & { startViewTransition: (cb: () => void) => void })
-                    .startViewTransition(() => setTheme(next))
-                }}
-                className="w-9 h-9 flex items-center justify-center rounded-full text-muted hover:text-[var(--fg)] border border-[var(--glass-border)] hover:border-[var(--accent)]/40 transition-all duration-200"
-                style={{ background: 'rgba(255,255,255,0.06)' }}
-                title="Toggle theme"
-              >
-                {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-              </motion.button>
-            )}
+            {/* Mobile menu toggle */}
+            <button
+              onClick={() => setMobileOpen(v => !v)}
+              className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-[5px] shrink-0"
+              aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={mobileOpen}
+            >
+              <motion.span
+                animate={{ rotate: mobileOpen ? 45 : 0, y: mobileOpen ? 6 : 0 }}
+                className="block w-5 h-[2px] rounded-full"
+                style={{ background: 'var(--cream)' }}
+              />
+              <motion.span
+                animate={{ opacity: mobileOpen ? 0 : 1 }}
+                className="block w-5 h-[2px] rounded-full"
+                style={{ background: 'var(--cream)' }}
+              />
+              <motion.span
+                animate={{ rotate: mobileOpen ? -45 : 0, y: mobileOpen ? -6 : 0 }}
+                className="block w-5 h-[2px] rounded-full"
+                style={{ background: 'var(--cream)' }}
+              />
+            </button>
           </div>
         </div>
+
+        {/* Mobile dropdown */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="md:hidden overflow-hidden mt-2 rounded-2xl"
+              style={{ background: 'var(--ink)' }}
+            >
+              <ul className="flex flex-col p-2">
+                {navLinks.map(link => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="block px-4 py-3 text-sm font-semibold rounded-lg"
+                      style={{
+                        color: activeSection === link.href ? 'var(--mustard)' : 'var(--cream-soft)',
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
     </div>
   )
